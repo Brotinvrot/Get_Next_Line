@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_head.h                                         :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 17:40:29 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/02 19:38:20 by drabadan         ###   ########.fr       */
+/*   Created: 2023/11/17 11:07:49 by drabadan          #+#    #+#             */
+/*   Updated: 2023/11/17 11:47:55 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_HEAD_H
-# define GNL_HEAD_H
+#include "libft.h"
 
-# ifndef BUFER_SIZE
-#  define BUFER_SIZE 1
-# endif
+void	*ft_memset(void *dst, int n, size_t len)
+{
+	size_t			i;
+	unsigned char	*ptr;
 
-# include "./Libft/src/libft.h"
-# include <stdlib.h>
-# include <fcntl.h>
-
-char	*get_next_line(int fd);
-
-#endif
+	ptr = (unsigned char *)dst;
+	i = 0;
+	while (i < len)
+	{
+		ptr[i] = (unsigned char)n;
+		i++;
+	}
+	return (dst);
+}

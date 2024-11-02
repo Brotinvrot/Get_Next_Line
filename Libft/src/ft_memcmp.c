@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_head.h                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 17:40:29 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/02 19:38:20 by drabadan         ###   ########.fr       */
+/*   Created: 2023/11/17 08:24:33 by drabadan          #+#    #+#             */
+/*   Updated: 2023/11/17 11:07:20 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_HEAD_H
-# define GNL_HEAD_H
+#include "libft.h"
 
-# ifndef BUFER_SIZE
-#  define BUFER_SIZE 1
-# endif
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	const unsigned char	*ptr1 = (const unsigned char *)s1;
+	const unsigned char	*ptr2 = (const unsigned char *)s2;
 
-# include "./Libft/src/libft.h"
-# include <stdlib.h>
-# include <fcntl.h>
-
-char	*get_next_line(int fd);
-
-#endif
+	if (!s1 && !s2)
+		return (0);
+	while (n--)
+	{
+		if (*ptr1 != *ptr2)
+			return (*ptr1 - *ptr2);
+		ptr1++;
+		ptr2++;
+	}
+	return (0);
+}

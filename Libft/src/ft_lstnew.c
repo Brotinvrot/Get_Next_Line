@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_head.h                                         :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 17:40:29 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/02 19:38:20 by drabadan         ###   ########.fr       */
+/*   Created: 2023/11/20 11:34:29 by drabadan          #+#    #+#             */
+/*   Updated: 2023/11/20 15:11:41 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_HEAD_H
-# define GNL_HEAD_H
+#include "libft.h"
 
-# ifndef BUFER_SIZE
-#  define BUFER_SIZE 1
-# endif
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new_node;
 
-# include "./Libft/src/libft.h"
-# include <stdlib.h>
-# include <fcntl.h>
-
-char	*get_next_line(int fd);
-
-#endif
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
+}

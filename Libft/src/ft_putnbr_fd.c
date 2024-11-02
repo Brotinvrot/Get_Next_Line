@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_head.h                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 17:40:29 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/02 19:38:20 by drabadan         ###   ########.fr       */
+/*   Created: 2023/11/18 11:16:40 by drabadan          #+#    #+#             */
+/*   Updated: 2023/11/18 19:17:00 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_HEAD_H
-# define GNL_HEAD_H
+#include "libft.h"
 
-# ifndef BUFER_SIZE
-#  define BUFER_SIZE 1
-# endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	char	s;
 
-# include "./Libft/src/libft.h"
-# include <stdlib.h>
-# include <fcntl.h>
-
-char	*get_next_line(int fd);
-
-#endif
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	s = n % 10 + '0';
+	write(fd, &s, 1);
+}

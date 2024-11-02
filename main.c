@@ -6,74 +6,95 @@
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:38:52 by drabadan          #+#    #+#             */
-/*   Updated: 2024/10/30 21:18:07 by drabadan         ###   ########.fr       */
+/*   Updated: 2024/11/02 19:29:41 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl_head.h"
 
-#ifndef BUFER_SIZE
-# define BUFER_SIZE 10
-#endif
-
 int	find_n(char *line)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
+	if (line == NULL)
+		return (1);
 	while (line[i])
 	{
 		if (line[i] == '\n')
-			return (0);// 0 значит совподение найдено
+			return (0);
 		i++;
 	}
-	return (1);// 1 значит совподения не найдено
+	return (1);
+}
+
+void	get_clean(char **line, char *patteren)
+{
+	char	*new_line;
+	int		i_pat;
+	int		i_lin;
+
+	i_pat = ft_strlen(patteren);
+	i_lin = ft_strlen(*line);
+	if (i_pat == i_lin)
+	{
+		free(*line);
+		*line = NULL;
+	}
+	else
+	{
+		new_line = ft_strdup(*line + i_pat);
+		free(*line);
+		*line = new_line;
+	}
+}
+
+char	*str_until_char(char *str, char c)
+{
+	char	*result;
+	char	*pos;
+	size_t	len;
+
+	pos = ft_strchr(str, c);
+	if (!pos)
+		return (str);
+	pos++;
+	len = pos - str;
+	result = malloc(len + 1);
+	if (!result)
+		return (NULL);
+	ft_strncpy(result, str, len);
+	result[len] = '\0';
+	return (result);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*bufer;
-	int	chek_read;
+	char		*bufer;
+	int			chek_read;
+	char		*tmp;
+	static char	*line;
 
-	if (BUFER_SIZE < 1 || fd < 0)
-		return (NULL);
-	bufer = malloc(BUFER_SIZE + 1);
-	if (!bufer)
-		return (NULL);
-	chek_read =	read(fd, bufer, BUFER_SIZE);
-	if (chek_read <= 0)
+	while (find_n(line) != 0)
 	{
+		bufer = malloc(BUFER_SIZE + 1);
+		chek_read = read(fd, bufer, BUFER_SIZE);
+		if (chek_read <= 0)
+		{
+			free(bufer);
+			tmp = line;
+			line = NULL;
+			return (tmp);
+		}
+		if (!line)
+			line = ft_strdup("");
+		bufer[chek_read] = '\0';
+		tmp = line;
+		line = ft_strjoin(line, bufer);
 		free(bufer);
-		return (NULL);
+		free(tmp);
 	}
-	bufer[chek_read] = '\0';
-	if (find_n(bufer) == 1)
-		printf("НЕ НАШЁЛ\n");
-	else
-		printf("НАШЁЛ\n");
-	return (bufer);
-}
-
-int	main(int argc, char **argv)
-{
-	int		fd;
-	char	*line;
-
-	if (argc != 2)
-	{
-		write (2, "Usage: ./a.out <filename>\n", 26);
-		return (1);
-	}
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		write(2, "Error: could not open file\n", 27);
-		return (1);
-	}
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		write (1, line, strlen(line));
-		write (1, "\n", 1);
-		free(line);
-	}
-	close (fd);
-	return (0);
+	tmp = str_until_char(line, '\n');
+	get_clean(&line, tmp);
+	return (tmp);
 }

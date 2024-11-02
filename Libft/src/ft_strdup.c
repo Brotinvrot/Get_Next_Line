@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_head.h                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 17:40:29 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/02 19:38:20 by drabadan         ###   ########.fr       */
+/*   Created: 2023/11/16 11:16:08 by drabadan          #+#    #+#             */
+/*   Updated: 2023/11/16 12:09:25 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_HEAD_H
-# define GNL_HEAD_H
+#include <stdlib.h>
+#include "libft.h"
 
-# ifndef BUFER_SIZE
-#  define BUFER_SIZE 1
-# endif
+char	*ft_strdup(const char *src)
+{
+	char	*point;
+	int		len_src;
 
-# include "./Libft/src/libft.h"
-# include <stdlib.h>
-# include <fcntl.h>
-
-char	*get_next_line(int fd);
-
-#endif
+	if (src == NULL)
+		return (NULL);
+	len_src = ft_strlen(src);
+	point = (char *)malloc(len_src + 1);
+	if (point == NULL)
+		return (NULL);
+	while (*src)
+		*point++ = *src++;
+	*point = '\0';
+	return (point - len_src);
+}

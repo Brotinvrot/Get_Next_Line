@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_head.h                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 17:40:29 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/02 19:38:20 by drabadan         ###   ########.fr       */
+/*   Created: 2023/11/17 12:28:10 by drabadan          #+#    #+#             */
+/*   Updated: 2023/11/17 12:38:52 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_HEAD_H
-# define GNL_HEAD_H
+#include "libft.h"
 
-# ifndef BUFER_SIZE
-#  define BUFER_SIZE 1
-# endif
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t				i;
+	unsigned char		*ptr_dst;
+	const unsigned char	*ptr_src;
 
-# include "./Libft/src/libft.h"
-# include <stdlib.h>
-# include <fcntl.h>
-
-char	*get_next_line(int fd);
-
-#endif
+	ptr_dst = (unsigned char *)dst;
+	ptr_src = (const unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		ptr_dst[i] = ptr_src[i];
+		i++;
+	}
+	return (dst);
+}
