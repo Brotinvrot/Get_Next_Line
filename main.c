@@ -6,7 +6,7 @@
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:38:52 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/02 19:29:41 by drabadan         ###   ########.fr       */
+/*   Updated: 2024/11/03 11:14:48 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,15 @@ char	*str_until_char(char *str, char c)
 	return (result);
 }
 
+char	*no_bit_return(char **line, char *bufer)
+{
+	char	*result;
+
+	result = *line;
+	free(bufer);
+	return (result);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*bufer;
@@ -79,13 +88,8 @@ char	*get_next_line(int fd)
 	{
 		bufer = malloc(BUFER_SIZE + 1);
 		chek_read = read(fd, bufer, BUFER_SIZE);
-		if (chek_read <= 0)
-		{
-			free(bufer);
-			tmp = line;
-			line = NULL;
-			return (tmp);
-		}
+		if (!bufer || chek_read <= 0)
+			return (no_bit_return(&line, bufer));
 		if (!line)
 			line = ft_strdup("");
 		bufer[chek_read] = '\0';
@@ -97,4 +101,33 @@ char	*get_next_line(int fd)
 	tmp = str_until_char(line, '\n');
 	get_clean(&line, tmp);
 	return (tmp);
+}
+
+int	main(int argc, char **argv)
+{
+	int		fd;
+	char	*line;
+
+	if (argc != 2)
+	{
+		write(2, "Usage: ./a.out <filename>\n", 26);
+		return (1);
+	}
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		write(2, "Error: could not open file\n", 27);
+		return (1);
+	}
+	// while ((line = get_next_line(fd)) != NULL)
+	// {
+	// 	write(1, line, ft_strlen(line));
+	// 	write(1, "\n", 1);
+	// 	free(line);
+	// }
+	line = get_next_line(fd);
+	write(1, line, ft_strlen(line));
+	free(line);
+	close(fd);
+	return (0);
 }
