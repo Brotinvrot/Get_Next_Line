@@ -6,7 +6,7 @@
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:40:29 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/05 09:59:00 by drabadan         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:13:48 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,10 @@
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
+char	*join_and_free(char *line, char *bufer);
+char	*str_until_char(char *str, char c);
+char	*read_and_update(int fd, char *line, int *bit);
+void	get_clean(char **line, char *patteren);
+int		find_n(char *line);
 
 #endif

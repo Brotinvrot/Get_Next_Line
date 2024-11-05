@@ -6,12 +6,12 @@
 #    By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/31 11:28:17 by drabadan          #+#    #+#              #
-#    Updated: 2024/11/01 20:26:42 by drabadan         ###   ########.fr        #
+#    Updated: 2024/11/05 16:14:39 by drabadan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 INCLUDES = -I $(LIBFT_DIR)
