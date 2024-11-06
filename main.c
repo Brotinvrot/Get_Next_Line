@@ -6,12 +6,12 @@
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:38:52 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/05 16:17:05 by drabadan         ###   ########.fr       */
+/*   Updated: 2024/11/06 11:15:59 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl_head.h"
-//#include <stdio.h>
+# include "./Libft/src/libft.h"
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -32,15 +32,15 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 // Печать циклом вывод всего файла
-	// while (line = get_next_line(fd) != NULL)
-	// {
-	// 	write(1, line, ft_strlen(line));
-	// 	free(line);
-	// }
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		write(1, line, ft_strlen(line));
+		free(line);
+	}
 // Вывод одной линии
 	// line = get_next_line(fd);
 	// write(1, line, ft_strlen(line));
 	// free(line);
-	// close(fd);
+	close(fd);
 	return (0);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl_head.h"
+#include "libft.h"
 
 char	*join_and_free(char *line, char *bufer)
 {
