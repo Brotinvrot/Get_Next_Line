@@ -6,7 +6,7 @@
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 20:27:48 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/07 07:40:35 by drabadan         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:29:11 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # ifndef BUFER_SIZE
-#  define BUFER_SIZE 1
+#  define BUFER_SIZE 13
 # endif
 
 # include <stdlib.h>
@@ -57,6 +57,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
+char	*ft_strcpy(char *s1, char *s2);
 char	*ft_itoa(int n);
 char	*ft_strncpy(char *dest, const char *src, size_t n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));

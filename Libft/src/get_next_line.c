@@ -6,7 +6,7 @@
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:06:50 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/07 08:28:26 by drabadan         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:25:10 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ char	*get_next_line(int fd)
 	result = str_until_char(line, '\n');
 	get_clean(&line, result);
 	if (line)
-	{
-		ft_strncpy(last_read, line, ft_strlen(line));
-		last_read[ft_strlen(line)] = '\0';
-	}
+		ft_strcpy(last_read, line);
 	free (line);
 	return (result);
 }

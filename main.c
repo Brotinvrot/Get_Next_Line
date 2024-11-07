@@ -6,7 +6,7 @@
 /*   By: drabadan <drabadan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:38:52 by drabadan          #+#    #+#             */
-/*   Updated: 2024/11/07 08:53:03 by drabadan         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:05:42 by drabadan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 // Печать циклом вывод всего файла
-	// while ((line = get_next_line(fd)) != NULL)
-	// {
-	// 	write(1, line, ft_strlen(line));
-	// 	free(line);
-	// }
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		write(1, line, ft_strlen(line));
+		free(line);
+	}
 // Вывод одной линии
-	line = get_next_line(fd);
-	write(1, line, ft_strlen(line));
-	free(line);
+	// line = get_next_line(fd);
+	// write(1, line, ft_strlen(line));
+	// free(line);
 	close(fd);
 	return (0);
 }
